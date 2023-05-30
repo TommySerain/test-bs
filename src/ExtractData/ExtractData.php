@@ -7,10 +7,11 @@ use Exception;
 class ExtractData
 {
     private const PATH = "/../../data/";
+    private const EXTENSION = ".xml";
 
     static function dataToArray(string $file): array
     {
-        $xmlFile = __DIR__ . self::PATH . $file;
+        $xmlFile = __DIR__ . self::PATH . $file . self::EXTENSION;
         if (!file_exists($xmlFile)) {
             throw new Exception("File not found: $xmlFile");
         }

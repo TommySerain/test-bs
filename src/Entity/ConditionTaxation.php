@@ -17,7 +17,7 @@ class ConditionTaxation
     public function __construct()
     {
         try {
-            $this->taxes = ExtractData::dataToArray("conditiontaxation.xml");
+            $this->taxes = ExtractData::dataToArray("conditiontaxation");
         } catch (Exception $e) {
             echo $e->getMessage();
         }

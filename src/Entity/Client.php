@@ -15,7 +15,7 @@ class Client
     public function __construct()
     {
         try {
-        $this->clients = ExtractData::dataToArray("client.xml");
+        $this->clients = ExtractData::dataToArray("client");
         } catch (Exception $e) {
         echo $e->getMessage();
         }

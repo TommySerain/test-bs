@@ -15,7 +15,7 @@ class Localite
     public function __construct()
     {
         try {
-            $this->localites = ExtractData::dataToArray("localite.xml");
+            $this->localites = ExtractData::dataToArray("localite");
         } catch (Exception $e) {
             echo $e->getMessage();
         }
