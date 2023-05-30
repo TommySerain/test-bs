@@ -3,6 +3,7 @@
 require_once "vendor/autoload.php";
 
 use App\Entity\Client;
+use App\Entity\ConditionTaxation;
 use App\Entity\Localite;
 use App\ExtractData\ExtractData;
 
@@ -10,19 +11,29 @@ try {
 
     // $clients= new Client();
     // $client=$clients->getClientById(6);
+    // $city=$client['ville'];
     // // $client=$clients->getClientByName("VINS DU MACONNAIS");
 
     // echo "<pre>";
     // print_r($client);
     // echo "</pre>";
 
-    $localites= new Localite();
+    // $localites= new Localite();
     // $localite=$localites->getLocaliteByZipCode("69");
     // $localite=$localites->getLocaliteByCity("AMPUIS");
-    $localite=$localites->getLocaliteByZone(2);
+    // $localite=$localites->getLocaliteByZone(2);
+
+    // echo "<pre>";
+    // print_r($localite);
+    // echo "</pre>";
+
+    $conditions= new ConditionTaxation();
+    $condition=$conditions->getConditionById(1);
+    // $localite=$localites->getLocaliteByCity("AMPUIS");
+    // $localite=$localites->getLocaliteByZone(2);
 
     echo "<pre>";
-    print_r($localite);
+    print_r($condition);
     echo "</pre>";
 
 }catch(Exception $e){
