@@ -7,11 +7,11 @@ use Exception;
 
 class Client
 {
+    private array $clients;
     private int $id;
     private string $compName;
     private string $zipCode;
     private string $city;
-    private array $clients;
     public function __construct()
     {
         try {
@@ -19,10 +19,9 @@ class Client
         } catch (Exception $e) {
         echo $e->getMessage();
         }
-    
     }
 
-    public function getClientById(int $id): array|null
+    public function getClientById(int $id): ?array
     {
         foreach ($this->clients as $client) {
             if (intval($client['idClient']) === $id) {
@@ -32,7 +31,7 @@ class Client
         return null;
     }
 
-    public function getClientByName(string $compagnyName): array|null
+    public function getClientByName(string $compagnyName): ?array
     {
         foreach ($this->clients as $client) {
             if ($client['raisonSociale'] === $compagnyName) {
