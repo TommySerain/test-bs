@@ -20,7 +20,6 @@ class ExtractData
         $json = json_encode($xmlData);
         $array = json_decode($json, true);
 
-
         $data = [];
         foreach ($array as $key => $valueArray) {
             foreach ($valueArray as $keyResponse => $valueResponse) {
@@ -36,8 +35,5 @@ class ExtractData
             unset($datum['@attributes']);
         }
         return $data;
-        // echo "<pre>";
-        // print_r($data);
-        // echo "</pre>";
     }
 }
