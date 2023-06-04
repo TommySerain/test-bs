@@ -29,7 +29,7 @@ try {
     echo "</pre><br>";
 
     $conditions = new ConditionTaxation();
-    $condition = $conditions->getConditionById(2);
+    $condition = $conditions->getConditionById(1);
     echo "<p>condition taxes</p>";
     echo "<pre>";
     print_r($condition);

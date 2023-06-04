@@ -22,6 +22,10 @@ class ConditionTaxation
             echo $e->getMessage();
         }
     }
+    public function getAllTaxes():array
+    {
+        return $this->taxes;
+    }
 
     public function getConditionById(int $id): ?array
     {
