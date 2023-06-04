@@ -20,6 +20,10 @@ class Localite
             echo $e->getMessage();
         }
     }
+    
+    public function getAllLocalites(): array{
+        return $this->localites;
+    }
 
     public function getLocaliteByZipCode(string $zipCode): ?array
     {

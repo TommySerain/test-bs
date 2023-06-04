@@ -20,6 +20,10 @@ class Client
         echo $e->getMessage();
         }
     }
+    public function getAllClients():array
+    {
+        return $this->clients;
+    }
 
     public function getClientById(int $id): ?array
     {
