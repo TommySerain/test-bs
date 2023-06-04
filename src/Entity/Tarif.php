@@ -23,18 +23,59 @@ class Tarif
         }
     }
 
-    public function getTarifByCodeDepartement(int $codeDepartement):?array
+    // public function getTarifByZoneAndIdClient(int $zone, int $idClient): ?array
+    // {
+    //     $arrayTarifs = [];
+
+    //     foreach ($this->tarifs as $tarif) {
+    //         if (intval($tarif['zone']) === $zone && intval($tarif['idClient']) === $idClient) {
+    //             $arrayTarifs[] = $tarif;
+    //         }
+    //     }
+    //     if (!empty($arrayTarifs)) {
+    //         return $arrayTarifs;
+    //     }
+    //     return null;
+    // }
+
+    public function getTarifByZoneAndIdClientAndDepartement(int $zone, int $idClient, int $codeDepartement): ?array
+    {
+        $arrayTarifs = [];
+        $tarifs = $this->getTarifByZone($zone);
+        foreach ($tarifs as $tarif) {
+            if (intval($tarif['codeDepartement']) === $codeDepartement && intval($tarif['idClient']) === $idClient) {
+                $arrayTarifs = $tarif;
+            }
+        }
+        if (empty($arrayTarifs)) {
+            foreach ($tarifs as $tarif) {
+                if (intval($tarif['codeDepartement']) === $codeDepartement && intval($tarif['idClient']) === 0) {
+                    $arrayTarifs = $tarif;
+                }
+            }
+        }
+        if (empty($arrayTarifs)) {
+            
+        }
+        return $arrayTarifs;
+    }
+
+    public function getTarifByZone(int $zone): ?array
     {
         $arrayTarifs = [];
         foreach ($this->tarifs as $tarif) {
-            if (intval($tarif["codeDepartement"]) === $codeDepartement) {
+            if (intval($tarif["zone"]) === $zone) {
                 $arrayTarifs[] = $tarif;
             }
         }
-        if (!empty($arrayTarifs)) {
-            return $arrayTarifs;
+        if (empty($arrayTarifs)) {
+            foreach ($this->tarifs as $tarif) {
+                if (intval($tarif["zone"]) === $zone-1) {
+                    $arrayTarifs[] = $tarif;
+                }
+            }
         }
-        return null;
+        return $arrayTarifs;
     }
 
     public function getIdClient(): int
@@ -57,5 +98,4 @@ class Tarif
     {
         return $this->montant;
     }
-
 }
