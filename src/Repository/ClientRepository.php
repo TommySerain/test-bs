@@ -8,10 +8,6 @@ use Exception;
 class ClientRepository
 {
     private array $clients;
-    // private int $id;
-    // private string $compName;
-    // private string $zipCode;
-    // private string $city;
     public function __construct()
     {
         try {
@@ -44,40 +40,4 @@ class ClientRepository
         }
         return null;
     }
-
-
-    // public function getId(): int
-    // {
-    //     return $this->id;
-    // }
-    // public function getCompName(): string
-    // {
-    //     return $this->compName;
-    // }
-    // public function setCompName(string $name): void
-    // {
-    //     if ($name !== null) {
-    //         $this->compName = $name;
-    //     }
-    // }
-    // public function getZipCode(): string
-    // {
-    //     return $this->zipCode;
-    // }
-    // public function setZipCode(string $zipCode): void
-    // {
-    //     if ($zipCode !== null) {
-    //         $this->zipCode = $zipCode;
-    //     }
-    // }
-    // public function getCity(): string
-    // {
-    //     return $this->city;
-    // }
-    // public function setCity(string $city): void
-    // {
-    //     if ($city !== null) {
-    //         $this->city = $city;
-    //     }
-    // }
 }
