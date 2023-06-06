@@ -8,6 +8,6 @@ class Calcul{
     }
 
     public Function calculateTotal(): float{
-        return $this->montant + (($this->taxes*$this->montant)/100);
+        return round($this->montant + (($this->taxes*$this->montant)/100), 2);
     }
 }

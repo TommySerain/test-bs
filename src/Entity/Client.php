@@ -2,81 +2,59 @@
 
 namespace App\Entity;
 
-use App\ExtractData\ExtractData;
-use Exception;
+use App\Repository\ClientRepository;
 
 class Client
 {
-    private array $clients;
     private int $id;
     private string $compName;
     private string $zipCode;
     private string $city;
-    public function __construct()
-    {
-        try {
-        $this->clients = ExtractData::dataToArray("client");
-        } catch (Exception $e) {
-        echo $e->getMessage();
-        }
-    }
-    public function getAllClients():array
-    {
-        return $this->clients;
-    }
 
-    public function getClientById(int $id): ?array
+    public function __construct($id)
     {
-        foreach ($this->clients as $client) {
-            if (intval($client['idClient']) === $id) {
-                return $client;
-            }
-        }
-        return null;
+        $clients = new ClientRepository();
+        $client = $clients->getClientById($id);
+        $this->id = $id;
+        $this->compName = $client['raisonSociale'];
+        $this->zipCode = $client['codePostal'];
+        $this->city = $client['ville'];
     }
-
-    public function getClientByName(string $compagnyName): ?array
-    {
-        foreach ($this->clients as $client) {
-            if ($client['raisonSociale'] === $compagnyName) {
-                return $client;
-            }
-        }
-        return null;
-    }
-
 
     public function getId(): int
     {
         return $this->id;
     }
+
     public function getCompName(): string
     {
         return $this->compName;
     }
-    public function setCompName(string $name): void
+    public function setCompName(string $compName): void
     {
-        if ($name !== null) {
-            $this->compName = $name;
+        if ($compName !== "") {
+            $this->compName = $compName;
         }
     }
+
     public function getZipCode(): string
     {
         return $this->zipCode;
     }
     public function setZipCode(string $zipCode): void
     {
-        if ($zipCode !== null) {
+        if ($zipCode !== "") {
             $this->zipCode = $zipCode;
         }
     }
+
     public function getCity(): string
     {
         return $this->city;
     }
     public function setCity(string $city): void
     {
-        if ($city !== null) {
+        if ($city !== "") {
             $this->city = $city;
         }
     }

@@ -8,24 +8,24 @@ use App\Entity\Tarif;
 
 class TarifController
 {
-    private Client $clients;
+    private Client $client;
     private Localite $localites;
     private Tarif $tarifs;
 
 
     public function __construct(private int $clientId)
     {
-        $this->clients = new Client();
+        $this->client = new Client($clientId);
         $this->localites = new Localite();
         $this->tarifs = new Tarif();
     }
 
     public function getTarif():float
     {
-        $client = $this->clients->getClientById($this->clientId);
-        $localite = $this->localites->getLocaliteByCity($client['ville']);
+        // $client = $this->clients->getClientById($this->clientId);
+        $localite = $this->localites->getLocaliteByCity($this->client->getCity());
         $clientZone = intval($localite['zone']);
-        $clientCodePostal = intval($client['codePostal']);
+        $clientCodePostal = intval($this->client->getZipCode());
         $tarif = $this->tarifs->getTarifByZoneAndIdClientAndDepartement($clientZone, $this->clientId, $clientCodePostal);
         if (empty($tarif)) {
             $tarif = $this->tarifs->getTarifByZoneAndIdClientAndDepartement($clientZone, 0, $clientCodePostal);
@@ -34,8 +34,8 @@ class TarifController
             $montant = $tarif['montant'];
         } else {
             $idClientHeritage = intval($tarif['idClientHeritage']);
-            $clientHeritage = $this->clients->getClientById($idClientHeritage);
-            $localiteHeritage = $this->localites->getLocaliteByCity($clientHeritage['ville']);
+            $clientHeritage = new Client($idClientHeritage);
+            $localiteHeritage = $this->localites->getLocaliteByCity($clientHeritage->getCity());
             $clientHeritageZone = intval($localiteHeritage['zone']);
             $clientHeritageCodePostal = intval($clientHeritage['codePostal']);
             $tarif = $this->tarifs->getTarifByZoneAndIdClientAndDepartement($clientHeritageZone, $idClientHeritage, $clientHeritageCodePostal);

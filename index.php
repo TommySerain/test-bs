@@ -3,17 +3,17 @@
 use App\Controller\ConditionTaxationController;
 use App\Controller\TarifController;
 use App\Entity\Calcul;
-use App\Entity\Client;
+use App\Repository\ClientRepository;
 
 require_once __DIR__ . '/src/Template/header.php';
 require_once "vendor/autoload.php";
 
-$clients = new Client();
-$allClients = $clients->getAllClients();
+$allClients = new ClientRepository();
+$allClients = $allClients->getAllClients();
 ?>
 
 <section class="container">
-    <h1 class="text-center mt-5">Calcule du tarif d'expédition</h1>
+    <h1 class="text-center mt-5">Calcul du tarif d'expédition</h1>
     <?php require_once __DIR__ . "/src/Template/form.php" ?>
 </section>
 
