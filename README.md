@@ -4,7 +4,7 @@
 J'ai fait cette application pour un test technique lors de ma recherche d'entreprise pour une alternance CDA.  
 L'énoncé se trouve dans le dossier data.  
 
-Je devait faire ce test soit en Java soit dans un langage ou j'étais plus à l'aise, j'ai donc décidé de le faire en PHP.
+Je devais faire ce test soit en Java soit dans un langage ou j'étais plus à l'aise, j'ai donc décidé de le faire en PHP.
 
 ## Instalation :
 Ce projet a été fait en php 8, il faudra simplement installer Composer pour l'autoloader.  
