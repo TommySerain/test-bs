@@ -22,7 +22,6 @@ class TarifController
 
     public function getTarif():float
     {
-        // $client = $this->clients->getClientById($this->clientId);
         $localite = $this->localites->getLocaliteByCity($this->client->getCity());
         $clientZone = intval($localite['zone']);
         $clientCodePostal = intval($this->client->getZipCode());
@@ -37,7 +36,7 @@ class TarifController
             $clientHeritage = new Client($idClientHeritage);
             $localiteHeritage = $this->localites->getLocaliteByCity($clientHeritage->getCity());
             $clientHeritageZone = intval($localiteHeritage['zone']);
-            $clientHeritageCodePostal = intval($clientHeritage['codePostal']);
+            $clientHeritageCodePostal = intval($clientHeritage->getZipCode());
             $tarif = $this->tarifs->getTarifByZoneAndIdClientAndDepartement($clientHeritageZone, $idClientHeritage, $clientHeritageCodePostal);
             $montant = $tarif['montant'];
         }

@@ -2,43 +2,25 @@
 
 namespace App\Entity;
 
-use App\ExtractData\ExtractData;
-use Exception;
+use App\Repository\ConditionTaxationRepository;
 
-class ConditionTaxation
-{
-    private array $taxes;
+class ConditionTaxation{
+
     private int $idClient;
     private bool $useTaxePortDuGenerale;
-    private int $taxePortDu;
+    private float $taxePortDu;
     private bool $useTaxePortPayeGenerale;
-    private int $taxePortPaye;
+    private float $taxePortPaye;
 
-    public function __construct()
+    public function __construct($id)
     {
-        try {
-            $this->taxes = ExtractData::dataToArray("conditiontaxation");
-        } catch (Exception $e) {
-            echo $e->getMessage();
-        }
-    }
-    public function getAllTaxes():array
-    {
-        return $this->taxes;
-    }
-
-    public function getConditionById(int $id): ?array
-    {
-        if ($id === 0) {
-            $taxe = $this->taxes[0];
-            return $taxe;
-        }
-        foreach ($this->taxes as $taxe) {
-            if ($taxe['idClient'] == $id) {
-                return $taxe;
-            }
-        }
-        return null;
+        $conditionTaxations = new ConditionTaxationRepository;
+        $conditionTaxation = $conditionTaxations->getConditionById($id);
+        $this->idClient = $id;
+        $this->useTaxePortDuGenerale = $conditionTaxation['useTaxePortDuGenerale'];
+        $this->taxePortDu = $conditionTaxation['taxePortDu'];
+        $this->useTaxePortPayeGenerale = $conditionTaxation['useTaxePortPayeGenerale'];
+        $this->taxePortPaye = $conditionTaxation['taxePortPaye'];
     }
 
     public function getIdClient(): int
@@ -53,11 +35,11 @@ class ConditionTaxation
     {
         $this->useTaxePortDuGenerale = $useTaxePortDu;
     }
-    public function getTaxePortDu(): int
+    public function getTaxePortDu(): float
     {
         return $this->taxePortDu;
     }
-    public function setTaxePortDu(int $taxePortDu): void
+    public function setTaxePortDu(float $taxePortDu): void
     {
         if ($taxePortDu > 0 && $taxePortDu !== null) {
             $this->taxePortDu = $taxePortDu;
@@ -71,11 +53,11 @@ class ConditionTaxation
     {
         $this->useTaxePortPayeGenerale = $useTaxePortPaye;
     }
-    public function getTaxePortPaye(): int
+    public function getTaxePortPaye(): float
     {
         return $this->taxePortPaye;
     }
-    public function setTaxePortPaye(int $taxePortPaye): void
+    public function setTaxePortPaye(float $taxePortPaye): void
     {
         if ($taxePortPaye > 0 && $taxePortPaye !== null) {
             $this->taxePortPaye = $taxePortPaye;

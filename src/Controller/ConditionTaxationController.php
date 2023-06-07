@@ -4,15 +4,16 @@ namespace App\Controller;
 
 
 use App\Entity\ConditionTaxation;
+use App\Repository\ConditionTaxationRepository;
 
 class ConditionTaxationController
 {
 
-    private ConditionTaxation $conditionTaxation;
+    private ConditionTaxationRepository $conditionTaxation;
 
     public function __construct()
     {
-        $this->conditionTaxation = new ConditionTaxation();
+        $this->conditionTaxation = new ConditionTaxationRepository();
     }
 
     public function getTaxes(): float
@@ -24,19 +25,19 @@ class ConditionTaxationController
         $payedByRecipient = $this->conditionTaxation->getConditionById($recipient);
         if ($clientPayant === 1) {
             if ($payedBySender === null || $payedBySender['useTaxePortPayeGenerale'] === "true") {
-                $taxes = $this->conditionTaxation->getConditionById(0);
-                $montantTaxes = $taxes['taxePortPaye'];
+                $taxes = new ConditionTaxation(0);
+                $montantTaxes = $taxes->getTaxePortPaye();
             } else {
-                $taxes = $this->conditionTaxation->getConditionById($sender);
-                $montantTaxes = $taxes['taxePortPaye'];
+                $taxes = new ConditionTaxation($sender);
+                $montantTaxes = $taxes->getTaxePortPaye();
             }
         } else {
             if ($payedByRecipient === null || $payedByRecipient['useTaxePortDuGenerale'] === "true") {
-                $taxes = $this->conditionTaxation->getConditionById(0);
-                $montantTaxes = $taxes['taxePortDu'];
+                $taxes = new ConditionTaxation(0);
+                $montantTaxes = $taxes->getTaxePortDu();
             } else {
-                $taxes = $this->conditionTaxation->getConditionById($sender);
-                $montantTaxes = $taxes['taxePortDu'];
+                $taxes = new ConditionTaxation($recipient);
+                $montantTaxes = $taxes->getTaxePortDu();
             }
         }
 
