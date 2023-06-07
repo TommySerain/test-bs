@@ -2,73 +2,32 @@
 
 namespace App\Entity;
 
-use App\ExtractData\ExtractData;
-use Exception;
+use App\Repository\TarifRepository;
 
-class Tarif
-{
-    private array $tarifs;
+class Tarif {
+
     private int $idClient;
-    private int $idClientHeritage;
+    private int|array $idClientHeritage;
     private int $codeDepartement;
     private int $zone;
     private float $montant;
 
-    public function __construct()
+    public function __construct($zone, $id, $codeDepartement)
     {
-        try {
-            $this->tarifs = ExtractData::dataToArray("tarif");
-        } catch (Exception $e) {
-            echo $e->getMessage();
-        }
-    }
-
-    public function getTarifByZoneAndIdClientAndDepartement(int $zone, int $idClient, int $codeDepartement): ?array
-    {
-        $tarifs = $this->getTarifByZone($zone);
-
-        $arrayTarifs = $this->findTarif($tarifs, $codeDepartement, $idClient);
-        if (empty($arrayTarifs)) {
-            $tarifs = $this->getTarifByZone($zone - 1);
-            $arrayTarifs = $this->findTarif($tarifs, $codeDepartement, $idClient);
-        }
-
-        return $arrayTarifs;
-    }
-
-    private function findTarif(array $tarifs, int $codeDepartement, int $idClient): ?array
-    {
-        foreach ($tarifs as $tarif) {
-            if (intval($tarif['codeDepartement']) === $codeDepartement && intval($tarif['idClient']) === $idClient) {
-                return $tarif;
-            }
-        }
-
-        foreach ($tarifs as $tarif) {
-            if (intval($tarif['codeDepartement']) === $codeDepartement && intval($tarif['idClient']) === 0) {
-                return $tarif;
-            }
-        }
-
-        return null;
-    }
-
-    public function getTarifByZone(int $zone): ?array
-    {
-        $arrayTarifs = [];
-        foreach ($this->tarifs as $tarif) {
-            if (intval($tarif["zone"]) === $zone) {
-                $arrayTarifs[] = $tarif;
-            }
-        }
-        return $arrayTarifs;
+        $tarif = new TarifRepository;
+        $tarif = $tarif->getTarifByZoneAndIdClientAndDepartement($zone, $id, $codeDepartement);
+        $this->idClient = $id;
+        $this->idClientHeritage = $tarif['idClientHeritage'];
+        $this->codeDepartement = $codeDepartement;
+        $this->zone = $zone;
+        $this->montant = $tarif['montant'];
     }
 
     public function getIdClient(): int
     {
         return $this->idClient;
     }
-    public function getIdClientHeritage(): int
+    public function getIdClientHeritage(): int|array
     {
         return $this->idClientHeritage;
     }
