@@ -2,65 +2,21 @@
 
 namespace App\Entity;
 
-use App\ExtractData\ExtractData;
-use Exception;
+use App\Repository\LocaliteRepository;
 
-class Localite
-{
-    private array $localites;
+class Localite{
+
     private string $zipCode;
     private string $city;
     private int $zone;
 
-    public function __construct()
+    public function __construct($city)
     {
-        try {
-            $this->localites = ExtractData::dataToArray("localite");
-        } catch (Exception $e) {
-            echo $e->getMessage();
-        }
-    }
-    
-    public function getAllLocalites(): array{
-        return $this->localites;
-    }
-
-    public function getLocaliteByZipCode(string $zipCode): ?array
-    {
-        $arrayLocalites = [];
-        foreach ($this->localites as $localite) {
-            if ($localite["codePostal"] === $zipCode) {
-                $arrayLocalites[] = $localite;
-            }
-        }
-        if (!empty($arrayLocalites)) {
-            return $arrayLocalites;
-        }
-        return null;
-    }
-
-    public function getLocaliteByCity(string $city): ?array
-    {
-        foreach ($this->localites as $localite) {
-            if ($localite["ville"] === $city) {
-                return $localite;
-            }
-        }
-        return null;
-    }
-
-    public function getLocaliteByZone(int $zone): ?array
-    {
-        $arrayLocalites = [];
-        foreach ($this->localites as $localite) {
-            if (intval($localite["zone"]) === $zone) {
-                $arrayLocalites[] = $localite;
-            }
-        }
-        if (!empty($arrayLocalites)) {
-            return $arrayLocalites;
-        }
-        return null;
+        $localite = new LocaliteRepository();
+        $localite = $localite->getLocaliteByCity($city);
+        $this->zipCode = $localite['codePostal'];
+        $this->city = $city;
+        $this->zone = $localite['zone'];
     }
 
     public function getZipCode(): string
