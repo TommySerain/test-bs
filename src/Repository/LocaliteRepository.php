@@ -8,9 +8,6 @@ use Exception;
 class LocaliteRepository
 {
     private array $localites;
-    // private string $zipCode;
-    // private string $city;
-    // private int $zone;
 
     public function __construct()
     {
@@ -62,35 +59,4 @@ class LocaliteRepository
         }
         return null;
     }
-
-    // public function getZipCode(): string
-    // {
-    //     return $this->zipCode;
-    // }
-    // public function setZipCode(string $zipCode): void
-    // {
-    //     if ($zipCode !== null) {
-    //         $this->zipCode = $zipCode;
-    //     }
-    // }
-    // public function getCity(): string
-    // {
-    //     return $this->city;
-    // }
-    // public function setCity(string $city): void
-    // {
-    //     if ($city !== null) {
-    //         $this->city = $city;
-    //     }
-    // }
-    // public function getZone(): int
-    // {
-    //     return $this->zone;
-    // }
-    // public function setZone(int $zone): void
-    // {
-    //     if ($zone !== null) {
-    //         $this->zone = $zone;
-    //     }
-    // }
 }

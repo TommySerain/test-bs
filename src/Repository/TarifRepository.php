@@ -8,11 +8,6 @@ use Exception;
 class TarifRepository
 {
     private array $tarifs;
-    // private int $idClient;
-    // private int $idClientHeritage;
-    // private int $codeDepartement;
-    // private int $zone;
-    // private float $montant;
 
     public function __construct()
     {
@@ -63,25 +58,4 @@ class TarifRepository
         }
         return $arrayTarifs;
     }
-
-    // public function getIdClient(): int
-    // {
-    //     return $this->idClient;
-    // }
-    // public function getIdClientHeritage(): int
-    // {
-    //     return $this->idClientHeritage;
-    // }
-    // public function getCodeDepartement(): int
-    // {
-    //     return $this->codeDepartement;
-    // }
-    // public function getZone(): int
-    // {
-    //     return $this->zone;
-    // }
-    // public function getMontant(): float
-    // {
-    //     return $this->montant;
-    // }
 }
