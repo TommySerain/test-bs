@@ -17,6 +17,6 @@ Ce projet a été fait en php 8, il faudra simplement installer Composer pour l'
      Mes entités n'étaient pas bonnes, elles faisaient trop de choses et n'étaient pas vraiment fonctionnelles d'un point de vue POO,
      J'ai donc décidé d'organiser mon code d'une manière différente qui ressemble beaucoup plus à une application symfony.
      J'ai opté pour la création de plusieurs class :  
-     &nbsp;&nbsp;&nbsp;&nbsp;- Les class Repository qui seront en charge d'aller chercher les données dans les fichiers data.  
+     &nbsp;&nbsp;&nbsp;&nbsp;- Les class Repository qui seront en charges d'aller chercher les données dans les fichiers data.  
      &nbsp;&nbsp;&nbsp;&nbsp;- Les class Entity qui vont recevoir les données récupérées par les class Repository et construire l'entité voulue.  
      &nbsp;&nbsp;&nbsp;&nbsp;- Les class Controller qui vont décider de ce qui sera envoyé à l'index pour l'affichage en fonction des données fournies par les class Entity.  
