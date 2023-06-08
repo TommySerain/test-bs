@@ -12,7 +12,7 @@ Ce projet a été fait en php 8, il faudra simplement installer Composer pour l'
 ## Quelques explications :
  - **Le temps passé sur ce projet :**  
      Environ 19h, entre 15 et 16h pour la totalité du projet et 3 ou 4 heures de plus pour refactoriser plusieurs choses,  
-     Dans les 15 heures de développement, je compte également la compréhension de l'énoncé, notamment les règles pour la définition du tarif et de conditions de taxations, j'ai du bien mettre à l'écrit les différentes règles pour ne pas me tromper.  
+     Dans les 15 heures de développement, je compte également la compréhension de l'énoncé, notamment les règles pour la définition du tarif et de conditions de taxations, j'ai dû bien mettre à l'écrit les différentes règles pour ne pas me tromper.  
  - **La refactorisation :**  
      Mes entités n'étaient pas bonnes, elles faisaient trop de choses et n'étaient pas vraiment fonctionnelles d'un point de vue POO,
      J'ai donc décidé d'organiser mon code d'une manière différente qui ressemble beaucoup plus à une application symfony.
