@@ -2,23 +2,13 @@
         <div class="col-6 mx-auto mt-4">
             <label for="sender">Expéditeur</label>
             <select name="sender" id="sender" class="form-control border-3 border-danger rounded-2 bg-success text-white" required>
-                <?php
-                foreach ($allClients as $client) { ?>
-                    <option value="<?php echo $client['idClient'] ?>"><?php echo $client['raisonSociale'] ?></option>
-                <?php
-                }
-                ?>
+                <?php displayArray($allClients)?>
             </select>
         </div>
         <div class="col-6 mx-auto mt-4">
             <label for="recipient">Destinataire</label>
             <select name="recipient" id="recipient" class="form-control border-3 border-danger rounded-2 bg-success text-white" required>
-                <?php
-                foreach ($allClients as $client) { ?>
-                    <option value="<?php echo $client['idClient'] ?>"><?php echo $client['raisonSociale'] ?></option>
-                <?php
-                }
-                ?>
+                <?php displayArray($allClients) ?>
             </select>
         </div>
         <div class="col-4 mt-4">
