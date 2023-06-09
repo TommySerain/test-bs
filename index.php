@@ -7,6 +7,8 @@ use App\Repository\ClientRepository;
 
 require_once __DIR__ . '/src/Template/header.php';
 require_once "vendor/autoload.php";
+require_once __DIR__  . "/Function/functions.php";
+
 
 $allClients = new ClientRepository();
 $allClients = $allClients->getAllClients();
